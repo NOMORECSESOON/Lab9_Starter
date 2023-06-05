@@ -102,6 +102,177 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    var bLog = errorBtns[0];
+    var bError = errorBtns[1];
+    var bCount = errorBtns[2];
+    var bWarn = errorBtns[3];
+    var bAssert = errorBtns[4];
+    var bClear = errorBtns[5];
+    var bDir = errorBtns[6];
+    var bXml = errorBtns[7];
+    var bGroupStart = errorBtns[8];
+    var bGroupEnd = errorBtns[9];
+    var bTable = errorBtns[10];
+    var bStartTime = errorBtns[11];
+    var bEndTime = errorBtns[12];
+    var bTrace = errorBtns[13];
+    var bGlobalError = errorBtns[14];
+    bLog.addEventListener("click", ()=>{
+      console.log("Console Log here");
+    });
+
+    bError.addEventListener("click", ()=>{
+      console.error("Console Error here");
+    });
+
+    bCount.addEventListener("click", ()=>{
+      console.count("Count here");
+    });
+
+    bWarn.addEventListener("click", ()=>{
+      console.warn("Console Warn here");
+    });
+    bAssert.addEventListener("click", ()=>{
+      const a = 2;
+      const ans = "the number 2 does not equal 1";
+      console.assert(number == 1, '%o', { number, ans });
+    });
+
+    bClear.addEventListener("click", ()=>{
+      console.clear();
+    });
+
+    bDir.addEventListener("click", ()=>{
+      console.dir(bDir);
+    });
+
+    bXml.addEventListener("click", ()=>{
+      console.dirxml(bXml);
+    });
+
+    bGroupStart.addEventListener("click", ()=>{
+      console.group();
+    });
+
+    bGroupEnd.addEventListener("click", ()=>{
+      console.groupEnd();
+    });
+
+    function Person(Name, Score) {
+      this.Name = Name;
+      this.Score = Score;
+    }
+
+    var student = [
+        {
+          name: 'aa',
+          height: 170,
+        },
+        {
+          name: 'bb',
+          students: 180,
+        },
+        {
+          name: 'cc',
+          students: 190,
+        }
+      ];
+    bTable.addEventListener("click", ()=>{
+      console.table(student);
+    });
+
+    bStartTime.addEventListener("click", ()=>{
+      console.time();
+    });
+
+    bEndTime.addEventListener("click", ()=>{
+      console.timeEnd();
+    });
+
+    bTrace.addEventListener("click", ()=>{
+      function handleBtnClick(){
+        function deep(){
+          function deeper(){
+            function deepest(){
+              console.trace();
+            }
+            deepest();
+          }
+          deeper();
+        }
+        deep();
+      }
+      handleBtnClick();
+    });
+
+    bGlobalError.addEventListener("click", ()=>{
+      throw new Error("fail");
+
+    });
+    // Trying Try/Catch
+    var try_catch = document.createElement("button");
+    try_catch.innerHTML = "Try/Catch";
+    document.querySelector("#error-btns").appendChild(try_catch);
+    function turn1(a, b) {
+      return 1;
+    }
+    try_catch.addEventListener("click", () => {
+    try {
+          console.log("start add");
+          let ret = turn1(1, 1);
+          if (ret == 1) {
+            console.log("right ans");
+          }
+          else{
+            console.log("get number not 1");
+            throw new Error();
+          }
+        } catch (err) {
+          alert("Try/Catch:catch: turn1 function is not working");
+        } finally {
+          alert("Try/Catch:finally: add function test end");
+        }
+    });
+
+    // Throw and Custom Errors
+    var john = `{ "name": "John"}`;
+
+    class ValidationError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "ValidationError";
+      }
+    }
+
+    var custom_error = document.createElement("button");
+    custom_error.innerHTML = "custom err";
+    document.querySelector("#error-btns").appendChild(custom_error);
+    custom_error.addEventListener("click", ()=>{
+      let user = JSON.parse(john);
+      if (!user.age) {
+        alert("custom err: No age field");
+        throw new ValidationError("custom err : no such field named age");
+      }
+      if (!user.name) {
+        alert("custom err: No name field");
+        throw new ValidationError("custom err: No such field named name");
+      }
+    });
+    
+    //The Global Error handler and 3rd Party Tracking
+    window.onerror = function (a, b, c){
+      alert('a: ' + a +  ' b: ' + b + ' c: ' + c);
+    }
+    var step5_button = document.createElement("button");
+    step5_button.innerHTML = "step 5 button";
+    document.querySelector("#error-btns").appendChild(step5_button);
+    step5_button.addEventListener("click", ()=>{
+      wrongwrongwrong
+      if(window.onerror) {
+        console.log("error on step 5");
+      }
+    });
+
   </script>
 </body>
 
