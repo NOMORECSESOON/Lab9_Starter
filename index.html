@@ -132,10 +132,11 @@
     bWarn.addEventListener("click", ()=>{
       console.warn("Console Warn here");
     });
+
     bAssert.addEventListener("click", ()=>{
-      const a = 2;
-      const ans = "the number 2 does not equal 1";
-      console.assert(number == 1, '%o', { number, ans });
+      const number = 1;
+      const errorMsg = "the number 1 not equal to 2";
+      console.assert(number == 2, '%o', { number, errorMsg });
     });
 
     bClear.addEventListener("click", ()=>{
@@ -221,7 +222,7 @@
           console.log("start add");
           let ret = turn1(1, 1);
           if (ret == 1) {
-            console.log("right ans");
+            console.log("right ans get");
           }
           else{
             console.log("get number not 1");
