@@ -86,7 +86,14 @@
       <button>Trigger a Global Error</button>
     </section>
   </main>
-
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "3344f645c0684662b8732ff8bf5e11c4"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+                          
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -99,7 +106,7 @@
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-
+    TrackJS.track('Testing TrackJS!');
     // Start your code here
     // You may move this JS to another file if you wish
     var bLog = errorBtns[0];
